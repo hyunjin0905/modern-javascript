@@ -11,7 +11,9 @@
 <script>
 
     var Person = /** @class */ (function () {
+        console.log(this);
         function Person() {
+            console.log(this);
             var _this = this;
             this.hello = function () {
                 console.log(_this);
@@ -32,27 +34,23 @@
 
 </script>
 <script>
-    class Person {
+    class PersonP {
 
-        talk() {
+        chatt() {
             console.log(this)
         }
 
-        hello = () => {
+        katt = () => {
             console.log(this)
         }
     }
 
-    const p1 = new Person();
-    const p2 = new Person();
-    const { talk, hello } = p1;
+    const hi = new PersonP();
+    const hi2 = new PersonP();
+    const { chatt, katt } = hi;
 
-    talk();
-    hello();
-
-
-    console.log(p1.hello === p2.hello);
-    console.log(p1.talk === p2.talk);
+    chatt();
+    katt();
 </script>
 
 </body>
