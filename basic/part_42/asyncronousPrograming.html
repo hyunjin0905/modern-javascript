@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>ㅎㅏ잉ㄴ</h1>
+<script>
+    function sleep (func, delay) {
+        console.log(Date.now());
+        const delayUntil = Date.now() + delay;
+        while (Date.now() < delayUntil);
+        func();
+    }
+    function foo() {
+        console.log("foo")
+    }
+    function bar() {
+        console.log("bar")
+    }
+    //sleep(foo, 3 * 1000)
+    //bar();
+    setTimeout(foo, 0)
+    bar();
+
+
+</script>
+</body>
+</html>
