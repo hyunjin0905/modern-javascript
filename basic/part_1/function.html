@@ -236,9 +236,9 @@
     }
     repeat(5, loadOdds)
 
-    document.getElementById("myButton").addEventListener("click", function () {
-        console.log("button")
-    })
+    // document.getElementById("myButton").addEventListener("click", function () {
+    //     console.log("button")
+    // })
 
     setTimeout(function () {
         console.log(1)
@@ -272,7 +272,27 @@
     count = increase(count);
     console.log(count);
 
+    console.log("순수 함수 테스트 중 ----------------------------")
+    var one = 0;
+    function plusOne (number) {
+        return number + 1;
+    }
 
+    one = plusOne(one);
+    console.log(one);
+
+    one = plusOne(one);
+    console.log(one);
+    console.log("비순수 함수 테스트 중 ----------------------------")
+
+    var two = 0;
+    function notPure () {
+        return two + 1;
+    }
+    notPure()
+    console.log(two)
+    notPure()
+    console.log(two)
     // 비순수함수
     var count2 = 0; //increase2 에 의해 변화한다
     function increase2() {
