@@ -151,9 +151,9 @@
     console.log(animal);
 
     // 프로퍼티 정의 에 의한 프로퍼티 추가 금지
-    Object.defineProperty(animal, 'new', {
-        value: 2
-    }); //// throws a TypeError
+    //Object.defineProperty(animal, 'new', {
+    //   value: 2
+    //}); //// throws a TypeError
     console.log(animal)
 
     // 객체 밀봉
@@ -170,7 +170,7 @@
     console.log(animal);
 
     // 프로퍼티 재정의 금지
-    Object.defineProperty(animal, "name", { configurable: true })
+    // Object.defineProperty(animal, "name", { configurable: true })
 
     // 객체 동결
     // 읽기만 가능
@@ -187,8 +187,29 @@
     // 재정의 금지
     // ..
 
+    // 불변 객체
+    // 중첩 객체까지는 동결 시키지 못함
+    // 중첩 객체 까지 동결시키는 함수
+    function deepFreeze(target) {
+        if (target && typeof target === 'object' && !Object.isFrozen(target)) {
+            Object.freeze(target);
+            Object.keys(target).forEach(key => deepFreeze(target[key]))
+        }
+        return target;
+    }
 
-    
+    const person4 = {
+        name: "cho",
+        address: { city: "seoul" }
+    }
+    deepFreeze(person4);
+    console.log(Object.isFrozen(person4));
+    console.log(Object.isFrozen(person4.address));
+    person4.address.city = "busan"
+    console.log(person4);
+
+
+
 </script>
 
 </body>
