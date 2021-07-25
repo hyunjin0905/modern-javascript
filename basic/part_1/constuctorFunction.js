@@ -29,6 +29,7 @@ console.log(circle2.getDiameter());
 
 // 생성자 함수 객체 생성 방식 장점
 function Circle(radius) {
+    console.log(this);
     this.radius = radius;
     this.getDiameter = function () {
         return 2 * this.radius;
@@ -58,6 +59,24 @@ obj.foo(); // obj
 const inst = new foo(); // inst
 
 // new 로 생성하지 않으면 일반 함수임
+
+// 인스턴스 생성 과정
+// * 자바스크립트 엔진은 암묵적인 처리르 통해 인스턴스를 생성하고 반환
+// * 암묵적인 빈객체 생성 생성자함수가 생성한 인스턴스 임
+// * 즉 인스턴스는 this 에 바인딩 된다
+// * 이 처리는 함수 몸체의 코드가 한줄씩 실행되는 런타임 이전에 실행된다
+
+
+// 바인딩
+// * 식별자와 값을 연결하는 과정을 의미
+var a; // 변수선언은 변수이름과 확보된 메모리공간의 주소를 바인딩 하는것
+// this 바인딩은 this 가 가리킬 객테를 바인딩 한 것
+
+
+// 생성자 함수 내부에서 return 문을 생략 해야 하는 이유
+//..
+
+
 
 
 
