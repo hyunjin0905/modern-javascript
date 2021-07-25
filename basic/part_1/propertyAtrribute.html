@@ -156,7 +156,21 @@
     }); //// throws a TypeError
     console.log(animal)
 
+    // 객체 밀봉
+    // 읽기과 쓰기만 가능
 
+    console.log(Object.isSealed(animal));
+    Object.seal(animal)
+    console.log(Object.isSealed(animal));
+    console.log(Object.getOwnPropertyDescriptors(animal))
+    // 추가 금지 삭제 금지
+    // ...
+    // 프로퍼티 값 갱신 가능
+    animal.name = "cat"
+    console.log(animal);
+
+    // 프로퍼티 재정의 금지
+    Object.defineProperty(animal, "name", { configurable: true })
 </script>
 
 </body>
