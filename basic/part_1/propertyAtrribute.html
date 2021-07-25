@@ -82,10 +82,10 @@
     console.log(Object.keys(person3));
     person3.lastName = "kim";
     console.log(person3)
-    delete person3.lastName; // 재정의 불가능 [[configurable]]
+   // delete person3.lastName; // 재정의 불가능 [[configurable]]
 
     // 접근자 프로퍼티 정의 defineProperty 하나만
-    Object.defineProperty(person3, "fullName", {
+    Object.defineProperty(person, "fullName", {
        get() {
            return `${this.firstName} ${this.lastName}`;
        },
@@ -130,7 +130,32 @@
             configurable: true
         }
     })
-    
+    person3.fullName = "hyeunjin cho";
+    console.log(person3);
+
+    console.log("----------------")
+
+    const animal = { name: "rabbit" }
+    console.log(Object.isExtensible(animal));
+
+    // 확장 금지
+    Object.preventExtensions(animal);
+    console.log(Object.isExtensible(animal));
+
+    // 추가금지
+    animal.age = 1;
+    console.log(animal);
+
+    // 삭제가능
+    delete animal.name;
+    console.log(animal);
+
+    // 프로퍼티 정의 에 의한 프로퍼티 추가 금지
+    Object.defineProperty(animal, 'new', {
+        value: 2
+    }); //// throws a TypeError
+    console.log(animal)
+
 
 </script>
 
