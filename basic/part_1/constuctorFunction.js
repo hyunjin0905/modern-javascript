@@ -77,6 +77,38 @@ var a; // 변수선언은 변수이름과 확보된 메모리공간의 주소를
 //..
 
 
+// 함수는 객체다
+// 일반객체는 호출 할수 없지만 함수는 호출 할 수 있다
+function foo2() {}
+// 일반 함수로서 호출: [[call]]이 호출된다
+foo();
+// 생성자 함수로서 호출: [[construct]]가 호출된다
+new foo();
 
 
+// contructor
+// * function() {} ,
+// * const a = function() {},
+// * Class
+
+// none-contructor
+// * 메서드
+// * 화살표 함수
+
+// 주의! ECMAScript 사양에서 메서드로 인정하는 범위가 일반적인 의미의 메서드보다 좁다
+function hi() {}
+const bar = function () {}
+const baz = {
+    // 프로퍼티 x 의 값으로 할당 된것은 일반 함수로 정의된 함수, 메서드 아님
+    x: function () {}
+}
+
+new hi();
+new bar();
+new baz.x();
+
+const arrow = () => {};
+new arrow();
+
+const obj2 = {}
 
