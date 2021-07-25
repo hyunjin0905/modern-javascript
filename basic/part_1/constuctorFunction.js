@@ -108,7 +108,25 @@ new bar();
 new baz.x();
 
 const arrow = () => {};
-new arrow();
+//new arrow();
 
-const obj2 = {}
+const obj2 = {
+    x() {}
+};
+// new obj2.x();
 
+// new.target
+
+function Circle3(radius) {
+    if (!new.target) {
+        return new Circle(radius);
+    }
+    this.radius = radius;
+    this.getDiameter = function () {
+        return 2 * this.radius;
+    };
+}
+
+
+const circle3 = Circle3(5);
+console.log(circle3.getDiameter());
