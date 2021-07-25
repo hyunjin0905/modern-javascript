@@ -171,6 +171,24 @@
 
     // 프로퍼티 재정의 금지
     Object.defineProperty(animal, "name", { configurable: true })
+
+    // 객체 동결
+    // 읽기만 가능
+    Object.freeze(animal);
+    console.log(Object.isFrozen(animal));
+    console.log(Object.getOwnPropertyDescriptors(animal))
+
+    // 갱신 금지
+    // ..
+    // 추가 금지
+    // ..
+    // 삭제 금지
+    // ..
+    // 재정의 금지
+    // ..
+
+
+    
 </script>
 
 </body>
