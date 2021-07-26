@@ -130,3 +130,17 @@ function Circle3(radius) {
 
 const circle3 = Circle3(5);
 console.log(circle3.getDiameter());
+
+// IE x
+function Circle(radius) {
+    if (!(this instanceof Circle)) {
+        return new Circle(radius)
+    }
+    this.radius = radius;
+    this.getDiameter = function () {
+        return 2 * this.radius;
+    }
+}
+
+const circle = Circle(5);
+console.log(circle.getDiameter)
