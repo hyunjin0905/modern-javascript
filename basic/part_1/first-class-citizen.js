@@ -14,12 +14,13 @@ const increase = function (num) {
     return ++num;
 }
 
-const decrese = function (num) {
+const decrease = function (num) {
     return --num;
 }
 
 // 2. 함수는 객체에 저장할 수 있다
 const predicates = { increase, decrease };
+console.log(predicates);
 
 // 3. 함수의 매개변수에 전달할 수 있다.
 // 4. 함수의 반환값으로 사용할 수 있다.
@@ -40,3 +41,27 @@ console.log(increaser());
 const decreaser = makeCounter(predicates.decrease);
 console.log(decreaser());
 console.log(decreaser());
+
+
+
+
+// 1.함수는 무명의 리터럴로 만들수 있다
+function(){
+    console.log("// 1.함수는 무명의 리터럴로 만들수 있다 ")
+}
+// 2. 함수를 변수에 담을 수 있다
+const sayHello = function () {
+    console.log("// 2. 함수를 변수에 담을 수 있다 ")
+}
+// 3. 함수는 객체에 담을수 있다
+const funcitonObject = { sayHello , function(){ console.log("1")}}
+console.log(funcitonObject)
+
+// * 객체의 프로퍼티
+function square(number) {
+    return number * number;
+}
+console.dir(square)
+console.log(Object.getOwnPropertyDescriptors(square));
+// __proto__ 는 square 함수의 프로퍼티가 아니다
+consoloe.log(Object.getOwnPropertyDescriptor(square, '__proto__'))
