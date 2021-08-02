@@ -190,3 +190,24 @@ function far() {
 
 }
 console.log(far.name)
+// *** 함수이름과 함수 객체를 가리키는 식별자의 의미는 다르다 !!!!!
+
+
+//__proto__ 접근자 프로퍼티
+// [[Prototype]] 에 접근하기위해  간접 접근
+const obj = { a: 1 };
+console.log(obj.__proto__ === Object.prototype);
+
+/// 객체 리터럴 방식으로 생성한 객체는 프로토타입 객체인 Object.prototype의 프로퍼티를 상속받는다
+console.log(obj.hasOwnProperty('a'));
+console.log(obj.hasOwnProperty('__proto__'));
+
+
+// prototype 프로퍼티
+// 생성자함수로 호출할수 있는 함수 객체 consturcutor 만이 소유하느 ㄴ프로퍼티
+
+// 함수 객체는 prototype 프로퍼티를 소유한다
+(function () {}.hasOwnProperty('prototype'))
+
+// 일반 객체는 prototype 프로퍼티를 소유 하지 않는다
+//({}).hasOwnProperty('prototype')
