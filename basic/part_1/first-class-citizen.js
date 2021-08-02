@@ -129,4 +129,30 @@ function mutliply(x,y) {
 mutliply(1,2,3);
 
 
+// es5 에서 유사배열객체 였는데
+// es6 에서는 리터러블 또는 유사배열객체 임
 
+// 유사배열객체는 배열 아님 배열 메서드 사용 오류
+
+// 간접호출
+function summ() {
+    const array = Array.prototype.slice.call(arguments);
+    return array.reduce(function (pre, cur) {
+        return pre + cur;
+    }, 0);
+}
+
+console.log(sum(1,2))
+console.log(sum(1,2,3,4))
+
+// caller 프로퍼티
+// 함수 자신을 호출하는 함수를 가리킨다
+function f1() {
+    return func();
+}
+function bar () {
+    return "caller:" + bar.caller
+}
+
+console.log(foo(bar));
+console.log(bar());
