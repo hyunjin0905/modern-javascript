@@ -115,4 +115,18 @@ console.log(sum(1,2,3))
 // 실제 배열 아님
 
 
+function mutliply(x,y) {
+    const iterator = arguments[Symbol.iterator]();
+    console.log(iterator.next())
+    console.log(iterator.next())
+    console.log(iterator.next())
+    console.log(iterator.next())
+    console.log(iterator.next())
+
+    return x * y;
+}
+
+mutliply(1,2,3);
+
+
 
