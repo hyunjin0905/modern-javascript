@@ -84,6 +84,7 @@ console.log(Object.getOwnPropertyDescriptor(Object.prototype, '__proto__'))
 
 
 // arguments 프로퍼티
+// - 의 length property 는 arguments 인자 이다
 function multiply(x, y) {
     console.log(arguments);
     return x * y;
@@ -156,3 +157,36 @@ function bar () {
 
 console.log(foo(bar));
 console.log(bar());
+// -> 브라우저환경이랑 node 환경이랑 다름
+
+
+// length 프로퍼티
+// 함수 객체의 매개변수의 개수
+function f2() {
+    console.log(f2.name);
+}
+function f3(x) {
+    return x
+}
+
+console.log(f3.length);
+function f4(x, y) {
+    return x * y
+}
+
+console.log(f4.length)
+
+// name property
+// 기명
+var namedFuc = function foo() {}
+console.log(namedFuc.name);
+// 익명
+// anoymousFunc = function() {};
+// ES5: name프로퍼티는 빈문자열을 값으로 갖는다
+// ES6: name 프로퍼티는 함수 객체를 가리키는 변수 이름을 값으로 갖는다
+
+// 함수 선언문
+function far() {
+
+}
+console.log(far.name)
