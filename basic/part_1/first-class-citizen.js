@@ -190,7 +190,7 @@ function far() {
 
 }
 console.log(far.name)
-// *** 함수이름과 함수 객체를 가리키는 식별자의 의미는 다르다 !!!!!
+// *** 함수이름과 함수 객체를 가리키는 식별자의 의미는 다르다
 
 
 //__proto__ 접근자 프로퍼티
@@ -210,4 +210,4 @@ console.log(obj.hasOwnProperty('__proto__'));
 (function () {}.hasOwnProperty('prototype'))
 
 // 일반 객체는 prototype 프로퍼티를 소유 하지 않는다
-//({}).hasOwnProperty('prototype')
+// ({}).hasOwnProperty('prototype')
