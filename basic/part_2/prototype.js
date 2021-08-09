@@ -75,19 +75,41 @@ console.log({}.__proto__ === Object.prototype);
 
 // * __proto__ 로 접근하는 이유
 
-const parent = {};
+//const parent = {};
 const child = {};
 // child의 프로토타입을 parent 설정
 
-child.__proto__ = parent;
-//parent.__proto__ = child; TypeError
+// child.__proto__ = parent;
+// parent.__proto__ = child; TypeError
 // 서로가 프로토타입이 되는비정상적인 프로토타입 체인이 만들어짐
 // 프로토타입 체인은 단방향 링크드 리스트로 구현 되어야함
 // 순환참조하는 프로토타입 체인이 만들어지면 프트로타입 체인이 종점이 없기 존재하지 않기 떄ㅜ문에
 // 프로트타입 체인에서 프로퍼티를 검색할때 무한루프에 빠미
 
 // * __proto__ 덪ㅂ근자 프로터피를 코드 내에서 직접 사용하는 것은 권장하지 않는다
-// es6 dp Tma
-/// 사용할수 없는 경우 - Object.prototyep 을 상속받지 안흔ㄴ 객체를 생성할 수도 있기 ㅒㄸ문에
-// const obj 는 프로토타입 체인의 종점이다  따라서 Object.__proto__ 를 상속받을 수 없다
-const obj = Object.create(null)
+// * es6 권장
+// * 사용할수 없는 경우 Object.prototyep 을 상속받지 않는 객체를 생성할 수도 있기 때문에
+// * const obj 는 프로토타입 체인의 종점이다  따라서 Object.__proto__ 를 상속받을 수 없다
+const obj2 = Object.create(null)
+console.log(obj2.__proto__)
+console.log(Object.getPrototypeOf(obj2))
+
+const obj3 = {};
+const parent2 = { x: 1 };
+// 프로토타입 취득
+Object.getPrototypeOf(obj3);
+// 프로토타입 교체
+Object.setPrototypeOf(obj3, parent2)
+console.log(obj3.x)
+
+
+
+// * 함수 객체의 prototype 프로퍼티
+// * 함수 객체만이 소유하는 prototype 프로퍼티는 생성자 함수가 생성할 인스턴스의 프로토타입을 가리킨다
+// 함수 객체의 prototype 프로퍼티를 소유한다
+console.log((function () {}).hasOwnProperty('prototype'))
+// 일반 객체 prototype 프로퍼티 소유하지않음
+console.log(({}).hasOwnProperty('__proto__'));
+console.log(typeof ({}))
+
+
