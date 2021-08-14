@@ -141,5 +141,105 @@ console.log(obj4.foo.prototype);
 // 값 : 프로토타입의 참조
 // 사용주체 : 생성자 함수
 // 사용목적 : 생성자 함수가 자신이 생성할객체(인스턴스)의 프르토타입을 할당 하기 위해 사용
+function Person(name) {
+    this.name = name;
+}
+
+const me = new Person("cho");
+console.log(Person.prototype === me.__proto__);
+
+console.log(me.constructor === Person)
+// me 객체의 생성자 함수는 Person3 이다
+// me 객체는 프로토타입의 consturcor 프로퍼티를 통해 생성자 함수와 연결된다
+// me 객체에는 construcrtor 프로퍼티가 없지만
+// me 객체의 프로토타입인 Person.prototype 에는 constructor 프로퍼티가 있다
+// me 객체는 프로토타입인 Person.protytype 의 constructor 프로퍼티를 상속받아 사용할 수 있다
+
+
+
+
+// * 리터럴 표기법에 의해 생성된 객체의 생성자 함수 와 프로토타입
+// newObj 객체를 생성한 생성자 함수는 Object 이다
+const newObj = new Object();
+console.log(newObj.constructor === Object);
+
+// add 함수 객체를 생성한 생성자 함수는 Function 이다
+const add = new Function('a', 'b', 'return a + b');
+console.log(add.constructor === Function);
+
+
+
+// 함수 리터럴
+const add2 = function (a, b) {
+    return a + b;
+}
+
+// 배열 리터럴
+const arr = [1, 2, 3];
+
+// 정규 표현식 리터럴
+const regexp = /is/ig;
+
+// Object 생성자 함수로 생성한 객체가 아니라 객체 리터럴로 생성했따
+// 객체 리터럴
+const obj_2 = {};
+console.log(obj_2.constructor === Object);
+// 생성자함수 로 생성한 객체가아니라 객체 리터럴에 의해 생성된객체다  obj 객체는 Object 생성자 함수와 construcort 프로퍼티로 연결 되어있다
+// 객체리터럴에 의해 생성된 객체는 사실 Object 생성자 함수로 생성되는 것은 아닐까?
+
+// ECMAScript 사양
+// 1. If NewTarget is nethier undefined nor the active function, then a.Return? OrdinaryCreateFromConstrucotr(NewTarget, "%Object.prototype%")
+// 2. If value is undefined or null, return OrdinaryObjectCreate(%Obnject.prototype%)
+// 3. Return ! ToObject(value.)
+
+// 2. Object 생성자함수에 의해 의한 객체 생성
+// 인수가 전달되지 않았을때 추상 연상 ordianryObjectCreate를 호출 하여 빈 객체를 생성한다
+let oobj = new Object();
+console.log(oobj); // {}
+
+//1. new.target이 undefined 나 Object 가 아닌 경우
+// 인스턴스 -> Foo.prototype => Object.prototype 수능로 프로토타입 체인이 생성된다
+class Foo extends Object{}
+new Foo();
+
+//3. 인수가 전달된 경우에는 인수를 객체로 변환한다
+oobj = new Object(1234);
+console.log(oobj)
+oobj = new Object("1234");
+console.log(oobj)
+
+// 따라서 객체 리러터럴에 의해 생성된 객체는 Object 생성자 함수가 생성한 객체가 아니다
+
+// 함수의 객체의 경우는 함수 선언문과 함수 표현식을 평가하여 함수 객체를 생성한 것은 Fucntion 생성자 함수가 아니다
+// 하지만 consturtro 프로퍼티를 통해 확인해보면 foo 함수의 생성자 함수는 Function 생성자 함수이다
+
+// 함수 선언문
+function foo_1 () {
+
+}
+console.log(foo_1)
+console.log(foo_1.constructor === Function)
+
+// ** 프로토타입과 생성자 함수는 단독으로 존재 할 수 없고 언제나 쌍으로 존재한다
+
+//프토토타입의 생성시점
+// 생성자함수가 생성되는 시점에 더불어 생성된다
+
+// 생성자 로서 호출할수 있는 함수 , 즉 consuctor 함수저의가 평가되어 함수 객체를 생성하는시점 에 프로토타입도 더불어 생성된다
+console.log(Intro.prototype)
+
+// constructor
+function Intro(message) {
+    this.message = message
+
+}
+
+
+// non-constructor
+const Intro2 = message => {
+    this.message = message;
+}
+// non-constructo 프로토타입 생성되지 않는다
+console.log(Intro2)
 
 
