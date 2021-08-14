@@ -110,6 +110,36 @@ console.log(obj3.x)
 console.log((function () {}).hasOwnProperty('prototype'))
 // 일반 객체 prototype 프로퍼티 소유하지않음
 console.log(({}).hasOwnProperty('__proto__'));
-console.log(typeof ({}))
+
+
+// 화살표 함수는 non-constuctor
+const Animal = name => {
+    this.name = name;
+}
+
+console.log(Animal.hasOwnProperty('prototye'))
+console.log(Animal.prototype);
+
+// es6 메서드 축약 표현으로 정의한 메서드는 non-constuctor
+const obj4 = {
+    foo(){}
+}
+
+console.log(obj4.foo.hasOwnProperty('prototye'))
+console.log(obj4.foo.prototype);
+//** 모든 객체가 가지고 있는 (엄밀히 말하면 Object.prototype으로부터 상속받은)
+// __proto__ 접근자 프로티와 함수  객체만이 가지고있는 prototype 프로퍼티는 결국 동일한 프로토타입을 가리킨다
+
+// __proto__ 접근자 프로퍼티
+// 소유 : 모든 객체
+// 값 : 프로토타입의 참조
+// 사용주체 : 모든 객체
+// 사용목적 : 객체가 자신의 프로토타입에 접근 또는 교체하기 위해 사용
+
+// prototype 프로퍼티
+// 소유 : constuctor
+// 값 : 프로토타입의 참조
+// 사용주체 : 생성자 함수
+// 사용목적 : 생성자 함수가 자신이 생성할객체(인스턴스)의 프르토타입을 할당 하기 위해 사용
 
 
