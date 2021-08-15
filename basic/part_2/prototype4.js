@@ -101,4 +101,52 @@ const objTest4 = {
 console.log("objTest4", objTest4.y, objTest4.x);
 console.log(Object.getPrototypeOf(objTest4) === myProto2);
 
+// 정적 프로퍼티/메서드는 생성자 함수로 인스턴스를 생성하지 않아도 참조/호출 할수 있는 프로퍼티/ 메서드를 말한다
+function Cafe(name) {
+    this.name = name
+}
+
+// 프로토타입 메서드
+Cafe.prototype.getName = function () {
+    console.log(`${this.name} 입니다 `);
+}
+
+console.log(Cafe.prototype);
+// 정적 프로퍼티
+Cafe.staticProp = 'static prop';
+
+// 정적 메서드
+Cafe.staticMethod = function () {
+    console.log(`staticMethod`)
+}
+
+const cafe = new Cafe("starbucks");
+Cafe.staticMethod();
+// 정적 메서드 프로퍼티는 인스턴스로 참조 / 호출 할수 없음
+
+// cafe.staticMethod();
+
+// Object.create 메서드는 Object 생성자 함수 의 정적 메서드  -> 인스턴스로 호출할수 없다
+// Object.prototypoe.hasownProperty 메서드는 Object.prototype의 메서드나
+//모든 객체의 프로토타입 체인의 종점 Object.prototype 의 메서드 이므로 모든 객체가  호출 될수 있따
+
+const objTest5 = Object.create({ name: "lucy "});
+console.log(objTest5.hasOwnProperty('name'))
+
+
+function Foo() {}
+
+Foo.prototype.x = function () {
+    console.log('x');
+}
+
+const foo = new Foo();
+foo.x();
+Foo.x = function () {
+    console.log('x');
+}
+
+Foo.x();
+
+// 프르토타입 표기법 Object#isPrototypeof # -> prototype
 
