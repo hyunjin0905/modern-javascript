@@ -79,7 +79,7 @@ console.log(eval('1+2'));
 
 
 // isInFinite
-/*
+/**
 * 전달받은 인수가 유한수인지 확인하고 그 결과가 반환한다
 * @param {number} testvalue
 * @return {boolean} 유한수 여부
@@ -88,3 +88,62 @@ console.log(eval('1+2'));
 //* isNaN
 //* parseFloat
 //* pareInt
+
+
+//
+//* encodeURI
+/**
+* 완전한 URI 통합자원 식별자 (식별하는 고유한 문자열 시퀀스)
+* (인터넷에 있는 자원을 나태내는 유일한 주소)를 문자열로 전달받아 이스케이프 처리를 위해 인코딩한다
+* @param {string} uri = 완전한 URI
+* @returns {stiring} 인코딩 된 URI
+* */
+
+// 이스케이프 터리는 네트워크를 통해 정보를 공유할떄 어떤 시스템에서도 읽을 수 있는 아스키 문자 셋으로 변환
+
+// 완전한 URI
+const uri = 'http://example.com?name=조현진&job=programmer&teacher';
+const enc = encodeURI(uri)
+console.log(enc);
+
+
+//* decodeURI
+/**
+ * 인코딩된 URI 를 전달받아 이스케이프 처리 이전으로 디코딩한다
+ * @param {string} encodedURI - 인코딩된 URI
+ * @returns {string} 디코딩된 URI
+*/
+const dec = decodeURI(enc);
+console.log(dec)
+
+
+
+//* encodeURIComponent
+/**
+ * URI의 구성요소를 전달받아 이스케이프 처리를 위해 인코딩한다
+ * @param {string} uriComponent = URI의 구성요소
+ * @returns {stiring} 인코딩 된 URI의 구성요소
+ * */
+
+
+
+//* decodeURIComponent
+/**
+ * 인코딩된 URI의 구성요소를 절답ㄷ아 이스케이스 처리 이전으로 디코딩한다
+ * @param {string} encodeURIComponent
+ * @returns {stiring} 디코딩된 URI dml rntjddyth
+ * */
+
+
+// URI 쿼리 스트링
+const uriComp = "name=조현진&job=programmer&good";
+// 쿼리 스트링 구분자까지 인코딩한다
+let enc2 = encodeURIComponent(uriComp);
+console.log(enc2);
+let dec2 = decodeURIComponent(enc2);
+console.log(dec2);
+
+
+
+
+
