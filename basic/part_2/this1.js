@@ -204,4 +204,4 @@ const testObj5= {
 testObj5.foo();
 
 
-// * 메서드 호출
+
