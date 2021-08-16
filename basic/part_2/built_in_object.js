@@ -144,6 +144,40 @@ let dec2 = decodeURIComponent(enc2);
 console.log(dec2);
 
 
+// 암묵적 전역
+console.log(x) // 전역변수는 x 는 호이스팅이 발생한다
+// console.log(y) //ReferenceError: y is not defined .. 호이스팅 발생하지 않음
+var x = 10; // 전역변수
+function foo() {
+    // 선언하지 않음 식별자에 값을 할당
+    y = 20;
+}
+foo()
+// 선언하지 않은 식별자 y를 전역에서 참조 할수 있다
+console.log(x + y);
+
+
+// foo 함수 호출되면
+// 자바스크립트 엔진은 y 변수에 갑을 할당하기 우해 먼저 스코프 체인을 통해 선언된 변수인지 확인한다
+// 어디에도 찾을수 없어서 참조 에러가 ㅂㄹ생한다 하지만 자바스크립트 엔진은 window.y = 20 으로 해석해서 전역 객체에 프로퍼티를 동적 생성한다
+// 결국 y 느 ㄴ프로퍼티가 되어 마치 전역 변수처럼 동작 이러한 현상을 암묵적 전역이라한다
+// y 는 변수가 아님 호이스팅 일어나지 않는다
+
+var a = 10; // 전역 변수
+
+function foo2() {
+    // 선언하지 않은 식별자에 값을 할당
+    b = 20; // window.y = 20;
+    console.log(a + b)
+}
+foo2();
+console.log(window.a);
+console.log(window.b);
+delete a; // 전역 변수는 삭제 되지 않는다
+delete b; // 프로퍼티는 삭제 된다
+console.log(window.a);
+console.log(window.b);
+
 
 
 
