@@ -47,4 +47,44 @@ console.log(typeof strA, strA)
 
 
 // * 전역객체
+// 코드가 실해됭기 이전 단계에 자바스크립트 엔진에 의해 어떤 객체보다도 먼저 생성되는 특수한 객체이면 어떤 객체에도 속하지 않은 최상위 객체다
+console.log(globalThis === this)
+// 전역 객체는 개발자가 의도적으로 생성 할 수 없다 즉 전역 객체를 생성할 수 있는 생성자 함수가 제공되지 않는다
+//전역객체의 프로퍼티를 참조할때 winodw 를 생략할수 있다.
+window.parseInt('F',15)
+console.log(window.parseInt === parseInt);
+// 자바스크립트 실행환경에 따라 추가적으로 프로퍼티와 메서드를 갖는다
+// 브라우저 환경
+// DOM , BOM , CANVAS< XMLHttpRequest, fetch , requestAnimationFrame, SVG, Web Stroage, Web Com,ponent , WebWokrder 같은 클라이언트 사이드 Web api
+// 노트 환경 nodejs 교유 api 호스트 객체 로 제공
+// let const 키워드로 선언한 전역 변수는 보이지 않는 개념적인 블록 (전역 렉시컬 환경의 선언적 환경 레코드)내에 존재하게 된다
 
+
+// 빌트인 전역 프로퍼티
+
+// 무한대
+console.log(window.Infinity === Infinity);
+console.log(typeof Infinity)
+
+
+// NaN Not-a-Number
+console.log(window.NaN)
+console.log(typeof NaN);
+
+// undefiend 프로퍼티는 원시타입 undefiend를 값으로 갖는다
+console.log(window.undefiend)
+
+// 빌트인 전역함수 전역객체의 메서드다
+console.log(eval('1+2'));
+
+
+// isInFinite
+/*
+* 전달받은 인수가 유한수인지 확인하고 그 결과가 반환한다
+* @param {number} testvalue
+* @return {boolean} 유한수 여부
+* */
+
+//* isNaN
+//* parseFloat
+//* pareInt
