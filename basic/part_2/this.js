@@ -3,7 +3,7 @@
 // 동작을 나타내는 메서드는 자신이 속한 객체를 가리키는 식별자를 참조할 수 있어야한다
 
 // 리터럴 방식으로 참조가능
-const circle = {
+const circle1 = {
     // 프로퍼티: 객체 고유의 상태 데이터
     radius: 5,
     // 메서드 : 상태 데이터를 참조하고 조작하는 동작
@@ -19,7 +19,7 @@ const circle = {
 
 
 
-console.log(circle.getDiameter());
+console.log(circle1.getDiameter());
 // ** this 존재 이유
 /*
 
@@ -59,6 +59,37 @@ Circle.prototype.getDiameter = function () {
     return 2 * this.radius;
 }
 const circle = new Circle(5)
+console.log(circle.getDiameter());
+
+// 자바스크립트 this 는 함수가 호출되는 방식에 따라  this 바인딩이 동적으로 결저오딘다
+
+console.log(this)
+function square(number) {
+    // 일반 함수 내부에서 this 전역객체 window 를 가리킨다
+    console.log(this)
+    return number * number;
+}
+square(2);
+
+
+const person = {
+    name: "lucy",
+    getName() {
+        // 메서드 내부에서 this 메서드를 호출한 객체를 가리킨다
+        console.log(this);
+        return this.name;
+    }
+};
+console.log(person.getName());
+
+function Person(name) {
+    this.name = name;
+    // 세생성자 함수가 내부에서 this 는 생성자 함수가 생성할 인스턴르르 가리키다
+
+}
+const me = new Person("lucy")
+
+// 함수 호출 방식과 this 바인딩
 
 
 
