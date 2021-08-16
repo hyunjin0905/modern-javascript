@@ -90,8 +90,93 @@ function Person(name) {
 const me = new Person("lucy")
 
 // 함수 호출 방식과 this 바인딩
+// 1. 일반함수의 호출
+// 2. 메서드 호출
+// 3. 생성자 함수 호출
+// 4. Function.prototype.apply/call/bind 메서드에 의한 간접호출
 
 
+// this 바인딩은 함수 호출방식에 따라 동적으로 결정된다
+const foo = function () {
+    console.dir(this)
+}
+
+// 동일한 함수도 다양한 방식으로 호출
+
+// 1. foo 함수 내부의 this는 전역 객체 window를 가리킨다
+foo(); // window
+
+// 2. foo 함수 내부의 this는 메서드를 호출한 객체 obj를 가리킨다
+const obj = { foo }
+obj.foo() // obj
+
+// 3. foo 함수 내부의 this는 생성자 함수가 생성한 인스턴스를 가리킨다
+new foo(); // foo{}
 
 
+// 4. foo 함수 내부의 this는 인수에 의해 결정된다
+const bar = {name: "bar"};
+foo.call(bar);
+foo.apply(bar);
+foo.bind(bar)();
 
+
+// * 일반 함수 호출 에서 this는 의미가 없다 자기 참조 하려고 하는기능인데 의미없음
+// 1 - 1 일반함수 호출
+function basicFoo1() {
+    'use strict' // 엄격 모드
+    console.log("basicFoo1", this)
+    function basicFoo2() {
+        console.log("basicFoo2", this)
+    }
+    basicFoo2();
+}
+basicFoo1();
+
+// 1 - 2 일반함수 호출 (중첩함수)
+var value = 1;
+const testObj = {
+    value: 100,
+    // 일반함수
+    foo1() {
+        console.log("foo1", this)
+        console.log("foo1", this.value)
+        // 메서드내 중첩 함수
+        function foo2() {
+            console.log("foo2", this)
+            console.log("foo2", this.value)
+        }
+        // 메서드 내에서 정의한 중첩 함수도 일반 함수로 호출되면 중첩 함수 내부의 this에는 전역 객체가 바인딩 된다
+        foo2();
+    }
+}
+
+testObj.foo1()
+
+// 1 - 3 일반함수 호출 (콜백함수)
+
+const testObj2 = {
+    value: 100,
+    foo() {
+        console.log("foo's this: ", this)
+        // 콜백 함수 내부의 this에는 전역 객체가 바인된다
+        setTimeout(function () {
+            console.log("callback's this: ", this);
+        }, 1000)
+    }
+}
+
+testObj2.foo();
+// 1 - 3 FIX 일
+
+const testObj3 = {
+    value: 100,
+    foo() {
+        const _this = this;
+        // 콜백 함수 내부의 this에는 전역 객체가 바인된다
+        setTimeout(function () {
+            console.log("callback's this: ", _this);
+        }, 1000)
+    }
+}
+testObj3.foo();
