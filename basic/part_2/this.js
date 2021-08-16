@@ -167,7 +167,7 @@ const testObj2 = {
 }
 
 testObj2.foo();
-// 1 - 3 FIX 일
+// 1 - 3 FIX
 
 const testObj3 = {
     value: 100,
@@ -180,3 +180,28 @@ const testObj3 = {
     }
 }
 testObj3.foo();
+
+// 1 - 3 FIX  this 명시적 바인딩 방법 : bind
+const testObj4 = {
+    value: 100,
+    foo() {
+        // 콜백 함수 명시적으로 this를 바인딩
+        setTimeout(function () {
+           console.log("testObj4", this.value)
+        }.bind(this), 1000)
+    }
+}
+testObj4.foo();
+
+// 1 - 3 FIX  this 명시적 바인딩 방법 : 화살표 함수
+const testObj5= {
+    value: 100,
+    foo() {
+        // 콜백 함수 명시적으로 this를 바인딩
+        setTimeout(() => console.log(`화살표 함수 방식 ${this.value}`), 2000)
+    }
+}
+testObj5.foo();
+
+
+// * 메서드 호출
