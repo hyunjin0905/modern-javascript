@@ -17,10 +17,11 @@ console.log('address' in person);
 console.log('age' in person);
 
 
-// 확인대상 객체 (person 객체ㄷ 모든 프로톹아비의 프로퍼티를 확인하므로 주의  필요
+// 확인대상 객체 (person 객체ㄷ 모든 프로토타입의 프로퍼티를 확인하므로 주의 필요
 // 해당 객체에는 toString 없지만
 console.log('toString' in person); // true
-// in 연산자는 person 객체가 속한 프로타입 체인상에 존재하는 모든 프로토타입에서 toString 프로퍼티를 검색 했기 떄문인다  toString  Object.prototype 메서드
+// in 연산자는 person 객체가 속한 프로타입 체인상에 존재하는 모든 프로토타입에서 toString 프로퍼티를 검색했기 떄문이다
+// toString  Object.prototype 메서드
 
 // es 6 Reflect.has
 console.log(Reflect.has(person, 'name'))
@@ -41,7 +42,7 @@ for (const key in person) {
 }
 
 // toString 과 같은 Object.prototype 의 프로퍼티가 열거되지 않는다
-// 메서드가 열거할수 없도로고 정의 되어 있느 ㄴ프로퍼티다
+// 메서드가 열거할 수 없도록 정의 되어 있는 프로퍼티다
 // 다시 말해
 // Object.prototype.string 프로퍼티의 프로퍼티 어트리뷰트 [[Enmerable]]의 값이 false 이기 떄문이다
 console.log(Object.getOwnPropertyDescriptor(Object.prototype, 'toString'))
