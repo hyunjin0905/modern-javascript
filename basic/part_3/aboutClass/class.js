@@ -1,20 +1,20 @@
 // 프로토타입 기반 객체지향 언어는 클래스가 필요없는 객체 지향 프로그래밍 언어다
 // es5에서는 클래스없이도 다음과 같이 생성자 함수와 프로토타입을 통해 객체 지향 언어의 상속을 구현 받을 수 있다
-var Person = (function () {
-    // 생성자 함수
-    function Person(name) {
-         this.name = name;
-    }
-
-    // 프로토타입 메서드
-    Person.prototype.getName = function () {
-        console.log(this.name)
-    }
-    return Person
-}())
-
-var me = new Person("lucy");
-me.getName();
+// var Person = (function () {
+//     // 생성자 함수
+//     function Person(name) {
+//          this.name = name;
+//     }
+//
+//     // 프로토타입 메서드
+//     Person.prototype.getName = function () {
+//         console.log(this.name)
+//     }
+//     return Person
+// }())
+//
+// var me = new Person("lucy");
+// me.getName();
 
 //차이점
 // 1. 클래스는 new 연산자 없이 호출하면 에러가 발생한다 하지만 생성자 함수 new 연산자 없이 호출하면 일반 함수로서 호출된다
@@ -25,16 +25,16 @@ me.getName();
 
 
 
-
+//
 // 클래스 정의
-class Person {
-
-}
+// class Person {
+//
+// }
 
 // 익명 클레스 표현식
-const Person = class {}
+// const Person = class {}
 // 기명 클래스 표현식
-const Person = class MyClass {}
+// const Person = class MyClass {}
 // 클래스를 표현식으로 갖는다는 것은 일급 객체 라는것 이다
 // 1. 무명의 리터럴 생성 가능 즉 런타임에 생성이 가능
 // 2. 변수나 자료구조에 저장할 수 있다
@@ -70,6 +70,24 @@ me.sayHi();
 // 정적 메서드 호출
 Person.sayHell()
 
+
+// 클래스 호이스팅
+// 클래스는 함수로 평가된다
+// console.log(Person) // ReferenceError....
+
+class Person2{}
+console.log(typeof Person2);
+
+
+// 클래스 선언문은 마치 호이스팅이 발생하지 않는 것처럼 보이나 그렇지 않음
+const Person3 = '';
+{
+    // 호이스팅이 발생하지 않는다면 ''이 출력되어야 한다
+    console.log(Person3); // Uncaught ReferenceError: Cannot access 'Person3' before initialization
+    class Person3 {
+
+    }
+}
 
 
 
