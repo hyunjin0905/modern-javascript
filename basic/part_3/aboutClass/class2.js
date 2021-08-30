@@ -121,4 +121,76 @@ console.log(f2.constructor)
 console.log(f2.constructor === classF);
 // 클래스는 생성자 함수와 마찬가지로 프로토타입 기반의 객체 생성 매커니즘이다
 
+// 정적 메서드
+// 인스턴스를 생성하지 암ㅎ아도 호출할수 있는 메서드
+
+/* 생성자 함수 의 정적 메서드 쓰는 법 */
+function Classf3(name) {
+    this.name = name;
+}
+// 정적 메서드
+Classf3.sayHi = function () {
+    console.log("hi!")
+}
+Classf3.sayHi();
+
+/* 클래스에서 정적 메서드 쓰는 법 */
+class Classf4 {
+    constructor(name){
+        // 인스턴스 생성 및 초기화
+        this.name = name;
+
+    }
+    static sayHi() {
+        console.log("Hi!");
+    }
+}
+
+Classf4.sayHi();
+// 정적 메서드는 인스턴스로 호출할수 없다 정적 메서드가 바인딩된 클래스는 인스턴스의 프로토타입 체인상에 존재하지 않기 때문
+
+
+
+/// 정적 메서드 vs 프로토타입 차이
+// 1. 자신이 속해 있느느 프로토타입 체인이 다르다
+// 2. 정적 메서드는 클래스로 호출 프로토타입 메서드는 인스턴스로 호출
+// 3. 정적 메서드는 인스턴스 프로퍼티를 참조 할수 없지만 프로토타입 메서드는 가능
+
+
+class Square1 {
+    // 정적 메서드
+    static area (width, height) {
+       return width * height
+    }
+}
+
+console.log(Square1.area(20, 30));
+
+class Square2 {
+
+    constructor(width, height) {
+        this.width = width;
+        this.heigth = height;
+    }
+    area() {
+        return this.width * this.height
+    }
+}
+
+
+const squareCalcu = new Square2(20, 30)
+console.log(squareCalcu.area())
+
+// 인스턴스 프로퍼티를 참조 해야할경우 정적메서드는 프로토타입 메서드를 사용해야한다
+// this 사용
+// 정적 메서드를 모아놓는 이유는 이름 충돌 가능성을 줄여주고 관련함수들을 구조화 할 수 있는 효과가 있다
+
+// 클래스 정의한 특징
+// 1. function 키워드를 생략한 메서드 축약표현을 사용했다
+// 2. 객체 리터럴과 다르게 클래스에 메서드를 정의할때는 콤마가 필요 없다
+// 3. 암묵적으로 strict mode로 실행된다
+// 4. for ... in 문 이나 Object.keys() 메서드등으로 열거 할 수 없다 즉 프로퍼티 열거 가능 ㅇ여부를 나타내며, 불리언 값을 갖는 프로퍼티 어트리뷰트 [[Enumerable]] 의 값이 false
+// 5. 내부 메서드 [[Construct]] 를 갖지 않는 non-consturctor 다 따라서 new 연산자와 함께 호출 할수 없다
+
+
 
