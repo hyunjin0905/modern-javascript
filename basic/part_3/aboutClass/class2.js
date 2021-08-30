@@ -65,8 +65,60 @@ class Person2 {
     constructor() {
         this.name = "lucy";
         this.address = "seoul";
+
+        // 명시적으로 원시값을 반환하면 원시값 무시되고 암묵적으로 this가 반환된다
+        //return {}
     }
 }
-
+// constuctor 에서 명시적으로 반환한 빈 객체가 반환된다
 const me2 = new Person2();
 console.log(me2);
+
+class Person3 {
+    constructor() {
+        this.name = name;
+        // 명시적으로 원시값을 반환하면 원시값 반환은 무시되고 암묵적으로 this가 반환된다
+        return 100;
+    }
+}
+const me3 = new Person3("lucy");
+console.log(me2);
+
+// 프토토타입 메서드
+
+// 생성자 함수
+function f(name) {
+    this.name = name
+}
+f.prototype.sayHi = function () {
+    console.log(this.name)
+}
+const f1 = new f("lucy");
+f1.sayHi();
+
+class classF {
+    constructor(name) {
+        this.name = name;
+    }
+    // 프로토타입 메서드
+    sayHi () {
+        console.log(this.name)
+    }
+}
+// 클래스가 생성한 인스턴스는 프롵토타입의 체인의 일원이 된다
+const f2 = new classF();
+f2.sayHi();
+
+// f2 객체의 프로토타입은 classF.prototype 이다
+console.log("Object.getPrototypeOf(f2) === classF.prototype", Object.getPrototypeOf(f2) === classF.prototype);
+console.log(f2 instanceof classF);
+console.log("f2 객체", f2);
+console.log(Object.getPrototypeOf(classF.prototype));
+// classF.prototype 의 프로토타입은 Object.prototype 이다
+console.log(Object.getPrototypeOf(classF.prototype) === Object.prototype);
+// f2 객체의 construtor 는 classF 클래스다
+console.log(f2.constructor)
+console.log(f2.constructor === classF);
+// 클래스는 생성자 함수와 마찬가지로 프로토타입 기반의 객체 생성 매커니즘이다
+
+
