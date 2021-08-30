@@ -96,7 +96,7 @@ f.prototype.sayHi = function () {
 const f1 = new f("lucy");
 f1.sayHi();
 
-class classF {
+class ClassF {
     constructor(name) {
         this.name = name;
     }
@@ -106,19 +106,19 @@ class classF {
     }
 }
 // 클래스가 생성한 인스턴스는 프롵토타입의 체인의 일원이 된다
-const f2 = new classF();
+const f2 = new ClassF();
 f2.sayHi();
 
 // f2 객체의 프로토타입은 classF.prototype 이다
-console.log("Object.getPrototypeOf(f2) === classF.prototype", Object.getPrototypeOf(f2) === classF.prototype);
-console.log(f2 instanceof classF);
+console.log("Object.getPrototypeOf(f2) === ClassF.prototype", Object.getPrototypeOf(f2) === ClassF.prototype);
+console.log(f2 instanceof ClassF);
 console.log("f2 객체", f2);
-console.log(Object.getPrototypeOf(classF.prototype));
+console.log(Object.getPrototypeOf(ClassF.prototype));
 // classF.prototype 의 프로토타입은 Object.prototype 이다
-console.log(Object.getPrototypeOf(classF.prototype) === Object.prototype);
+console.log(Object.getPrototypeOf(ClassF.prototype) === Object.prototype);
 // f2 객체의 construtor 는 classF 클래스다
 console.log(f2.constructor)
-console.log(f2.constructor === classF);
+console.log(f2.constructor === ClassF);
 // 클래스는 생성자 함수와 마찬가지로 프로토타입 기반의 객체 생성 매커니즘이다
 
 // 정적 메서드
@@ -189,7 +189,7 @@ console.log(squareCalcu.area())
 // 1. function 키워드를 생략한 메서드 축약표현을 사용했다
 // 2. 객체 리터럴과 다르게 클래스에 메서드를 정의할때는 콤마가 필요 없다
 // 3. 암묵적으로 strict mode로 실행된다
-// 4. for ... in 문 이나 Object.keys() 메서드등으로 열거 할 수 없다 즉 프로퍼티 열거 가능 ㅇ여부를 나타내며, 불리언 값을 갖는 프로퍼티 어트리뷰트 [[Enumerable]] 의 값이 false
+// 4. for ... in 문 이나 Object.keys() 메서드등으로 열거 할 수 없다 즉 프로퍼티 열거 가능 여부를 나타내며, 불리언 값을 갖는 프로퍼티 어트리뷰트 [[Enumerable]] 의 값이 false
 // 5. 내부 메서드 [[Construct]] 를 갖지 않는 non-consturctor 다 따라서 new 연산자와 함께 호출 할수 없다
 
 
