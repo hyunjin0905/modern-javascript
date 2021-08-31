@@ -71,6 +71,46 @@ console.log(Object.getOwnPropertyNames(person));
 console.log(Object.getOwnPropertyNames(Object.getPrototypeOf(person)));
 
 
+// * 클래스 필드의 정의 제안
+// 자바스크립트에서도 인스턴스 프로퍼티를 마치 클래스 기반 객체 지향 언어의 클래스 필드 처럼 정의할수 있는 새로운 표준 사양인 "Class field declarations" 가
+// 2021년 1월 TC39프로세스의 stage3에 제안되어 있다 (정식 표준 사양으로 승급 안됨)
+// 최신 브라우저와 최신 node.js 에서는 다음 예제와 같이 클래스 필드를 클래스 몸체에 정의 할수 있다
+class Person2 {
+    // 클래스 필드 정의
+    name = "lucy";
+    // this.name = ""
+    // - 클래스 몸체에서 클래스 필드를 정의 하는 경우 this 클래스 필드를 바인딩 해서는 안된다
+}
+const me = new Person2();
+console.log(me);
+// 클래스 필드를 참조하는 경우 자바화 같은 클래스 기반 객체 지향 언어에서는 this를 생략할수 있으나 자바스크립트에서는 this를 반드시 사용해야 한다
+
+
+class Person3 {
+    name; // 1
+    // 클래스가 생성한 인스턴스에 클래스필드에 해당하는 프로퍼티가 없다면 자동 추가 되기 때문이다
+    constructor(name) {
+        // 클래스 필드 초기화
+        // 어차피 내부에서 클래스필드를 참조하여 초기값을 할당해야한다  클래스 필드 정의 할 필요가 없다 // 1
+        this.name = name;
+    }
+
+    // 함수는 일급객체 므로 함수를 클래스필드에 할당할수 있다
+    getName = function () {
+        return this.name;
+    }
+}
+
+const me2 = new Person3("hyunjin");
+console.log(me2)
+console.log(me2.getName());
+
+
+
+
+
+
+
 
 
 

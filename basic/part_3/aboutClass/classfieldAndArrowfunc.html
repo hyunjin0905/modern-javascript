@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button class="btn">0</button>
+<script>
+    class App {
+        constructor() {
+            this.$button = document.querySelector(".btn");
+            this.count = 0;
+            this.$button.onclick =  this.increase;
+         //   this.$button.onclick = this.increase.bind(this)
+
+        }
+          increase = () => {
+              this.$button.textContent = ++this.count;
+        }
+    }
+    new App();
+</script>
+
+</body>
+</html>
