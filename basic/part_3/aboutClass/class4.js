@@ -58,7 +58,7 @@ console.log(d);
 // super 키워드
 // super 호출하면 수퍼클래스의 constructor (super-connstuctor)를 호출한다
 class Base2 {
-    constructor(a,b) {
+    constructor(a,b) { //4
         this.a = a;
         this.b = b;
     }
@@ -67,7 +67,7 @@ class Base2 {
 
 class Derived extends Base {
     // 다음과 같이 암묵적으로 constuctor 가 정의된다
-    constructor(a, b, c) { // 4
+    constructor(a, b, c) { // 2
         super(a,b); // 3
         this.c = c;
     }
@@ -75,5 +75,25 @@ class Derived extends Base {
 }
 const derived2 = new Derived(1, 2, 3);
 console.log(derived2)
+
+// 1 new 연산자와 함께 derived 클래스를 호출하면서
+// 2 전달한 인수 1,2,3 은 Derived 클래스의 constucotr 에 전달 되고
+// 3 super 호출을 통해 Base2 클래스의 consturctor에 일부가 전달된다
+
+
+//* 주의사항
+
+// 1. 서브클래스에서 constructor 생략하지 않은 경우 서브 클래스의 constucutor에서는 반드시 super를 호출 해야한다
+// 2. 서브 클래스의 constructor 에서 super를 호출하기 전에는 this를 참조 할수 없다
+// 3. super는 반드시 서브 클래스의 consturtor 에서만 호출한다. 서브 클래스가 아닌 construtor 나 함수에서 super를 호출하면 에러가 발생한다
+
+
+// super 참조
+// 메서드내에서 super를 참조하면 수퍼클래스의 메서드를 호출 할 수 있다
+//1. 서브클래스의 프로토타입 메서드 내에서 super.sayHi는 수퍼클래스의 프로토타입 메서드 sayHi를 가르킨다
+
+
+
+
 
 
