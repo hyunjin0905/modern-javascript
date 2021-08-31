@@ -106,7 +106,59 @@ console.log(me2)
 console.log(me2.getName());
 
 
+// private 필드 정의 제안
+class Person4 {
+    // private 필드 정의
+    #name = '';
+    constructor(name) {
+        // private 필드 참조
+        this.#name = name;
+    }
 
+}
+const m3 = new Person4("lucy");
+// console.log(me3.#name); //Uncaught SyntaxError: Private field '#name' must be declared in an enclosing class
+// 클래스 내부에서만 접근가능
+
+
+// 다만 접근자 프로퍼티를 통해 간접적으로 접근하는 방법 유효
+
+class Person5 {
+    // private 필드 정의
+    #name = '';
+    constructor(name) {
+        // private 필드 참조
+        this.#name = name;
+    }
+
+    // name 접근자 프로퍼티다
+    get name () {
+        return this.#name;
+    }
+
+}
+const m5 = new Person5("lucy");
+
+console.log(me.name);
+// private 필드은 반드시 클래스 몸체에 정의 해야한다
+
+
+
+
+// * static 필드 정의 제안
+// 최신 브라우저 최신 nodejs 사용가능
+
+class MyMath {
+    static PI = 22 / 7;
+    static #num = 10;
+    static increment () {
+        return ++MyMath.#num;
+    }
+
+}
+
+console.log(MyMath.PI);
+console.log(MyMath.increment());
 
 
 
