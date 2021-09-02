@@ -30,7 +30,7 @@ console.log(circle_2.getArea());
 
 // 모든 객체는 [[Prototype]] 내부 슬롯을 가짐
 // 이 내부 슬롯의 값은 프로토타입의 참조(null 인 경우도 있다)다
-// 생성 방식에 의해 결정되고 [[Prototyep]] 에 저장된다
+// 생성 방식에 의해 결정되고 [[Prototype]] 에 저장된다
 // __proto__ 접근자 프로퍼티로 접근
 // 프로토타입은 자산의 constructor 프로퍼티 통해서 생성자 함수 접근
 // 생성자 함수는 자신의 prototype 프로퍼티를 통해 프로토타입에 접근 할수 있다
@@ -88,7 +88,7 @@ const child = {};
 
 // * __proto__ 덪ㅂ근자 프로터피를 코드 내에서 직접 사용하는 것은 권장하지 않는다
 // * es6 권장
-// * 사용할수 없는 경우 Object.prototyep 을 상속받지 않는 객체를 생성할 수도 있기 때문에
+// * 사용할수 없는 경우 Object.prototype 을 상속받지 않는 객체를 생성할 수도 있기 때문에
 // * const obj 는 프로토타입 체인의 종점이다  따라서 Object.__proto__ 를 상속받을 수 없다
 const obj2 = Object.create(null)
 console.log(obj2.__proto__)
