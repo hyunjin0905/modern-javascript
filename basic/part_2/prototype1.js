@@ -1,6 +1,9 @@
 // *** 프로토타입
-// * 상속으로통해 불필요한 중복을 제거, 자바스크립트는 프로토타입을 기반으로 상속으로 구현한다.
-// 생성자 함수
+// 상속으로 통해 불필요한 중복을 제거
+// 자바스크립트는 프로토타입을 기반으로 상속으로 구현한다.
+
+
+// 생성자 함수 (비교)
 function Circle2(radius) {
     this.radius = radius
 }
@@ -16,7 +19,7 @@ const circle_1 = new Circle2(1);
 const circle_2 = new Circle2(2);
 
 // Circle 생성자 함수가 생성한 모든 인스턴스는 부모 객체의 역할을 하는
-// 프로토 타입 Circle.prototype으로 부터 getArea 메서드를 상속받는다
+// 프로토 타입Circle.prototype 으로 부터 getArea 메서드를 상속받는다
 // 즉, Circle 생성자 함수가 생성하는 모든 인스턴스는 하나의 getArea 메서드를 공유한다
 console.log(circle_1.getArea === circle_2.getArea)
 console.log(circle_1.getArea());
@@ -52,7 +55,7 @@ const obj = {};
 const parent = { x: 1 };
 
 // getter 함수인 get __proto__ 가 호출되어 obj 객체의 프로토타입을 취득
-console.log("__proto__   getter 호출")
+console.log("__proto__ getter 호출")
 obj.__proto__;
 // setter 함수인 set__proto__ 가 호출되어 obj 객체의 프로토타입을 교체
 obj.__proto__ = parent;
@@ -60,16 +63,16 @@ console.log(obj.x);
 
 
 // * __proto__ 접근자 프로퍼티는 상속을 통해 사용된다
-// * __proto__ 접근자 프로퍼티는 객체가 직접 소유하는 프로퍼티가 아니라 Object.prototype의 프로퍼티다
+// * __proto__ 접근자 프로퍼티는 객체가 직접 소유하는 프로퍼티가 아니라 Object.prototype 의 프로퍼티다
 const person = { name: "lucy" }
 
-// person객체는 __proto__프로퍼티를 소유하지않음
+// person 객체는 __proto__프로퍼티를 소유하지않음
 console.log(person.hasOwnProperty('__proto__'))
 
-// __proto__프로퍼티는 모든객체의 프로토타입 객체인 Object.prototype의 접근자 프로퍼티다
+// __proto__프로퍼티는 모든객체의 프로토타입 객체인 Object.prototype 의 접근자 프로퍼티다
 console.log(Object.getOwnPropertyDescriptors(Object.prototype, '__proto__'))
 
-// 모든 객체는 Object.prototype 의 접근자 프로퍼티 __protot__ 를 상속 받아 사용할수있따
+// 모든 객체는 Object.prototype 의 접근자 프로퍼티 __proto__ 를 상속 받아 사용 할 수 있다
 console.log({}.__proto__ === Object.prototype);
 
 
@@ -77,22 +80,23 @@ console.log({}.__proto__ === Object.prototype);
 
 //const parent = {};
 const child = {};
-// child의 프로토타입을 parent 설정
+// child 의 프로토타입을 parent 설정
 
 // child.__proto__ = parent;
 // parent.__proto__ = child; TypeError
-// 서로가 프로토타입이 되는비정상적인 프로토타입 체인이 만들어짐
+// 서로가 프로토타입이 되는 비정상적인 프로토타입 체인이 만들어짐
 // 프로토타입 체인은 단방향 링크드 리스트로 구현 되어야함
-// 순환참조하는 프로토타입 체인이 만들어지면 프트로타입 체인이 종점이 없기 존재하지 않기 떄ㅜ문에
-// 프로트타입 체인에서 프로퍼티를 검색할때 무한루프에 빠미
+// why?
+// - 순환참조하는 프로토타입 체인이 만들어지면 프트로타입 체인이 종점이 없기 존재하지 않기 때문에
+// - 프로토타입 체인에서 프로퍼티를 검색할때 무한루프에 빠짐
 
-// * __proto__ 덪ㅂ근자 프로터피를 코드 내에서 직접 사용하는 것은 권장하지 않는다
+// * __proto__ 접근자 프로퍼티를 코드 내에서 직접 사용하는 것은 권장하지 않는다
 // * es6 권장
 // * 사용할수 없는 경우 Object.prototype 을 상속받지 않는 객체를 생성할 수도 있기 때문에
 // * const obj 는 프로토타입 체인의 종점이다  따라서 Object.__proto__ 를 상속받을 수 없다
 const obj2 = Object.create(null)
-console.log(obj2.__proto__)
-console.log(Object.getPrototypeOf(obj2))
+console.log(obj2.__proto__);
+console.log(Object.getPrototypeOf(obj2));
 
 const obj3 = {};
 const parent2 = { x: 1 };
@@ -112,22 +116,22 @@ console.log((function () {}).hasOwnProperty('prototype'))
 console.log(({}).hasOwnProperty('__proto__'));
 
 
-// 화살표 함수는 non-constuctor
+// 화살표 함수는 non-constructor
 const Animal = name => {
     this.name = name;
 }
 
-console.log(Animal.hasOwnProperty('prototye'))
+console.log(Animal.hasOwnProperty('prototype'))
 console.log(Animal.prototype);
 
-// es6 메서드 축약 표현으로 정의한 메서드는 non-constuctor
+// es6 메서드 축약 표현으로 정의한 메서드는 non-constructor
 const obj4 = {
     foo(){}
 }
 
-console.log(obj4.foo.hasOwnProperty('prototye'))
+console.log(obj4.foo.hasOwnProperty('prototype'))
 console.log(obj4.foo.prototype);
-//** 모든 객체가 가지고 있는 (엄밀히 말하면 Object.prototype으로부터 상속받은)
+//** 모든 객체가 가지고 있는 (엄밀히 말하면 Object.prototype 으로 부터 상속받은)
 // __proto__ 접근자 프로티와 함수  객체만이 가지고있는 prototype 프로퍼티는 결국 동일한 프로토타입을 가리킨다
 
 // __proto__ 접근자 프로퍼티
@@ -137,7 +141,7 @@ console.log(obj4.foo.prototype);
 // 사용목적 : 객체가 자신의 프로토타입에 접근 또는 교체하기 위해 사용
 
 // prototype 프로퍼티
-// 소유 : constuctor
+// 소유 : constructor
 // 값 : 프로토타입의 참조
 // 사용주체 : 생성자 함수
 // 사용목적 : 생성자 함수가 자신이 생성할객체(인스턴스)의 프르토타입을 할당 하기 위해 사용
@@ -150,10 +154,10 @@ console.log(Person.prototype === me.__proto__);
 
 console.log(me.constructor === Person)
 // me 객체의 생성자 함수는 Person3 이다
-// me 객체는 프로토타입의 consturcor 프로퍼티를 통해 생성자 함수와 연결된다
-// me 객체에는 construcrtor 프로퍼티가 없지만
+// me 객체는 프로토타입의 constructor 프로퍼티를 통해 생성자 함수와 연결된다
+// me 객체에는 constructor 프로퍼티가 없지만
 // me 객체의 프로토타입인 Person.prototype 에는 constructor 프로퍼티가 있다
-// me 객체는 프로토타입인 Person.protytype 의 constructor 프로퍼티를 상속받아 사용할 수 있다
+// me 객체는 프로토타입인 Person.prototype 의 constructor 프로퍼티를 상속받아 사용할 수 있다
 
 
 
@@ -161,11 +165,11 @@ console.log(me.constructor === Person)
 // * 리터럴 표기법에 의해 생성된 객체의 생성자 함수 와 프로토타입
 // newObj 객체를 생성한 생성자 함수는 Object 이다
 const newObj = new Object();
-console.log(newObj.constructor === Object);
+console.log(newObj.constructor === Object); // true
 
 // add 함수 객체를 생성한 생성자 함수는 Function 이다
 const add = new Function('a', 'b', 'return a + b');
-console.log(add.constructor === Function);
+console.log(add.constructor === Function); // true
 
 
 
@@ -180,24 +184,25 @@ const arr = [1, 2, 3];
 // 정규 표현식 리터럴
 const regexp = /is/ig;
 
-// Object 생성자 함수로 생성한 객체가 아니라 객체 리터럴로 생성했따
+// Object 생성자 함수로 생성한 객체가 아니라 객체 리터럴로 생성했다
 // 객체 리터럴
 const obj_2 = {};
 console.log(obj_2.constructor === Object);
-// 생성자함수 로 생성한 객체가아니라 객체 리터럴에 의해 생성된객체다  obj 객체는 Object 생성자 함수와 construcort 프로퍼티로 연결 되어있다
+// 생성자함수 로 생성한 객체가아니라 객체 리터럴에 의해 생성된객체다
+// obj 객체는 Object 생성자 함수와 constructor 프로퍼티로 연결 되어있다
 // 객체리터럴에 의해 생성된 객체는 사실 Object 생성자 함수로 생성되는 것은 아닐까?
 
 // ECMAScript 사양
-// 1. If NewTarget is nethier undefined nor the active function, then a.Return? OrdinaryCreateFromConstrucotr(NewTarget, "%Object.prototype%")
-// 2. If value is undefined or null, return OrdinaryObjectCreate(%Obnject.prototype%)
+// 1. If NewTarget is nethier undefined nor the active function, then a.Return? OrdinaryCreateFromConstructor(NewTarget, "%Object.prototype%")
+// 2. If value is undefined or null, return OrdinaryObjectCreate(%Object.prototype%)
 // 3. Return ! ToObject(value.)
 
 // 2. Object 생성자함수에 의해 의한 객체 생성
-// 인수가 전달되지 않았을때 추상 연상 ordianryObjectCreate를 호출 하여 빈 객체를 생성한다
+// 인수가 전달되지 않았을때 추상 연상 ordinaryObjectCreate 를 호출 하여 빈 객체를 생성한다
 let oobj = new Object();
 console.log(oobj); // {}
 
-//1. new.target이 undefined 나 Object 가 아닌 경우
+//1. new.target 이 undefined 나 Object 가 아닌 경우
 // 인스턴스 -> Foo.prototype => Object.prototype 수능로 프로토타입 체인이 생성된다
 class Foo extends Object{}
 new Foo();
@@ -210,8 +215,8 @@ console.log(oobj)
 
 // 따라서 객체 리러터럴에 의해 생성된 객체는 Object 생성자 함수가 생성한 객체가 아니다
 
-// 함수의 객체의 경우는 함수 선언문과 함수 표현식을 평가하여 함수 객체를 생성한 것은 Fucntion 생성자 함수가 아니다
-// 하지만 consturtro 프로퍼티를 통해 확인해보면 foo 함수의 생성자 함수는 Function 생성자 함수이다
+// 함수의 객체의 경우는 함수 선언문과 함수 표현식을 평가하여 함수 객체를 생성한 것은 Function 생성자 함수가 아니다
+// 하지만 constructor 프로퍼티를 통해 확인해보면 foo 함수의 생성자 함수는 Function 생성자 함수이다
 
 // 함수 선언문
 function foo_1 () {
@@ -225,7 +230,7 @@ console.log(foo_1.constructor === Function)
 //프토토타입의 생성시점
 // 생성자함수가 생성되는 시점에 더불어 생성된다
 
-// 생성자 로서 호출할수 있는 함수 , 즉 consuctor 함수저의가 평가되어 함수 객체를 생성하는시점 에 프로토타입도 더불어 생성된다
+// 생성자 로서 호출할수 있는 함수, 즉 constructor 함수정의가 평가되어 함수 객체를 생성하는시점 에 프로토타입도 더불어 생성된다
 console.log(Intro.prototype)
 
 // constructor
@@ -239,7 +244,7 @@ function Intro(message) {
 const Intro2 = message => {
     this.message = message;
 }
-// non-constructo 프로토타입 생성되지 않는다
+// non-constructor 프로토타입 생성되지 않는다
 console.log(Intro2)
 
 

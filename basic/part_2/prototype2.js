@@ -7,12 +7,15 @@ Person.prototype.sayHello = function () {
 }
 
 const me = new Person("lucy");
-// hasOwnProperty 는 Object.prototype 의 메서드ㅏ다
+
 
 console.log(me.hasOwnProperty("name"))
-console.log(Object.getPrototypeOf(me) === Person.prototype)
-console.log(Object.getPrototypeOf(Person.prototype) === Object.prototype)
+// hasOwnProperty 는 Object.prototype 의 메서드다
+console.log(Object.getPrototypeOf(me) === Person.prototype) // true
+console.log(Object.getPrototypeOf(Person.prototype) === Object.prototype) // true
 
+console.log(Object.getPrototypeOf(Person.prototype));
+console.log(Object.prototype);
 // 자바스크립트는 객체의 프로퍼티에 접근하려고 할때 해당 객체에 접근하려는 프로퍼티가 없으면
 // [[prototype]] 내부 슬롯의 참조를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. 이를 프로토 체인
 // 프로토타입 체은 자바스크립트가 객체지향 프로그램이의 상속을 구현하는 매커니즘이다
