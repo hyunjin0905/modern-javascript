@@ -36,6 +36,12 @@ console.log(new obj2.f());
 //    생성자 함수로 호출되지 않아도 프로토타입 객체를 생성한다
 
 
+// 콜백 함수를 사용하는 고차 함수 map
+// 콜백함수 constuctor이며 프로토타입 생성
+[1,2,3].map(function (item) {
+    return item * 2
+});
+
 // es6 는 사용 목적에 따라 세가지 종류로명확히 구분
 //          constructor   prototype     super     argumnets
 // 일반함수        o            o            x          o
@@ -47,6 +53,25 @@ console.log(new obj2.f());
 
 
 
+// 메서드
+// 일반적으로 메서드는 객체에 바인된 함수를 일컫는의미로 사용 됨
+// es6 사양에서 메서드는 메서드 축약표현으로 정의된 함수만을 의미
+
+const obj3 = {
+    x: 1,
+    // foo 메서드다
+    foo() { return this.x; },
+    // bar에 바인딩된 함수는 메서드가 아닌 일반함수다
+    bar: function () {
+        return this.x
+    }
+}
+
+
+// es6 사양에서 정의한 메서드(이하 es6메서드)는 인스턴스를 생성할 수 없는 non-consturctor 다
+//
+//new obj3.foo(); // TypeError: obj3.foo is not a constructor
+new obj3.bar();
 
 
 
