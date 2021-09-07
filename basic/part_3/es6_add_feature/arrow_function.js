@@ -70,7 +70,7 @@ const person = (name => ({
 
 // 화살표 함수도 일급객체이므로
 //Array.prototype.map
-//Array.prototype.filter
+//  Array.prototype.filter
 //Array.prototype.reduce
 // high order function 에 인수로 전달 할수 있따
 
@@ -86,7 +86,20 @@ const person = (name => ({
 // 화살표 함수 와 일바 함수의 차이
 
 // 1. 화살표 함수는 인스턴스를 생성할 수 없는 non-constuctor이다
+const Foo =() => {};
+//new Foo() // TypeError: Foo is not a constructor
+// 인스턴스를 생성할수 없으므로 prototype 프로퍼티가 없고 프로토타입도 생성하지 않는다
+
+
 // 2. 중복된 매개 변수 이름을 선언할수 없다
+function f(a,a) {
+    return a + a;
+} // use strict 모드 사용하면 에러 발생함..
+
+console.log(f(1,2))
+
+//const f2 (a,a) => a + a;
+
 // 3. 함수 자체의 this, arguments, super, new.target 바인딩을 갖지 않는다 참조하면 사위스코프의 를 참조한다
 
 
