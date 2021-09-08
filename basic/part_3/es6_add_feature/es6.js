@@ -20,7 +20,7 @@ var obj2 = {
 // 프로퍼티 f의 바인딩 된 함수를 메서드로서 호출
 console.log(obj2.f());
 
-// 프로퍼티 fdml 바인딩된 함수를 일반 함수로서 호출
+// 프로퍼티 f의 바인딩된 함수를 일반 함수로서 호출
 var bar = obj2.f;
 console.log(bar());
 
@@ -54,7 +54,7 @@ console.log(new obj2.f());
 
 
 // 메서드
-// 일반적으로 메서드는 객체에 바인된 함수를 일컫는의미로 사용 됨
+// 일반적으로 메서드는 객체에 바인된 함수를 일컫는 의미로 사용 됨
 // es6 사양에서 메서드는 메서드 축약표현으로 정의된 함수만을 의미
 
 const obj3 = {
@@ -69,7 +69,6 @@ const obj3 = {
 
 
 // es6 사양에서 정의한 메서드(이하 es6메서드)는 인스턴스를 생성할 수 없는 non-consturctor 다
-//
 //new obj3.foo(); // TypeError: obj3.foo is not a constructor
 console.log(new obj3.bar()); // bar {}
 
@@ -98,7 +97,7 @@ const base = {
 const derived = {
     __proto__: base,
     // sayHi 는 es6 메서드 es6 메서드는 [[HomeObject]] 갖고있다
-    // sayHi [[HomeObject]]는 derived.prototype 을 가리키도
+    // sayHi [[HomeObject]]는 derived.prototype 을 가리키고
     // super는 sayHi의 [[HomeObject]]의 프로토타입인 base.prototype을 가리킨다
     sayHi() {
         return `${super.sayHi()}. how are you doing?`

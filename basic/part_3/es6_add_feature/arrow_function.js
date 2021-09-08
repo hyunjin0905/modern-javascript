@@ -74,19 +74,19 @@ const person = (name => ({
 //Array.prototype.reduce
 // high order function 에 인수로 전달 할수 있따
 
-// es 5
+// es5
 [1, 2, 3].map(function (data) {
     return data * 2
 })
 
-//es6
+// es6
 [1, 2, 3].map(v => v * 2)
 
 
-// 화살표 함수 와 일바 함수의 차이
+// 화살표 함수 와 일반 함수의 차이
 
 // 1. 화살표 함수는 인스턴스를 생성할 수 없는 non-constuctor이다
-const Foo =() => {};
+const Foo = () => {};
 //new Foo() // TypeError: Foo is not a constructor
 // 인스턴스를 생성할수 없으므로 prototype 프로퍼티가 없고 프로토타입도 생성하지 않는다
 
@@ -100,6 +100,7 @@ console.log(f(1,2))
 
 //const f2 (a,a) => a + a;
 
-// 3. 함수 자체의 this, arguments, super, new.target 바인딩을 갖지 않는다 참조하면 사위스코프의 를 참조한다
+// 3. 함수 자체의 this, arguments, super, new.target 바인딩을 갖지 않는다
+// 참조하면 스코프 체인을 통해 상위스코프를 참조한다
 
 
