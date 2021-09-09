@@ -34,7 +34,6 @@ logName(null) // null
   //  Uncaught SyntaxError: Rest parameter may not have a default initializer
 //}
 
-
 // 매개변수 기본값은 함수 정의시 선언한 매개변수 개수를 나타내는 함수 객체의 length 프로퍼티와 arguments 객체에 아무런 영향을 주지 않는다
 function sum3(x, y = 0) {
     console.log(arguments)
