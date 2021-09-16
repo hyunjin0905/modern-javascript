@@ -38,7 +38,7 @@ console.log(Object.getOwnPropertyDescriptors([1,2,3]))
 // 자바스크립트 배열은 인덱스를 나타내는 문자열을 프로퍼티 키로 가지며 length 프로퍼티를 갖는 특수한 객체다
 // 배열의 요소는 사실 프로퍼티 값
 
-const arrr = [
+const arrr1 = [
     'string',
     10,
     true,
@@ -79,8 +79,8 @@ console.timeEnd('Object Performance test')
 
 
 // * length 프로퍼티와 희소배열
-[].length //0
-[1,2,3].length //3
+console.log([].length) //0
+console.log([1,2,3].length) //3
 
 // length 프로퍼티의 값 0과 2의32승 -1(4,294,967,295)개 가질수 있음
 const arr3 = [1 ,2 ,3];
@@ -123,8 +123,25 @@ console.log(Object.getOwnPropertyDescriptors(spares));
 // 희소배열의 length는 희소배열의 실제요소개수보다 언제나 크다
 
 // 안쓰는게 좋음
-
 // 배열에는 같은타입의 요소를 연속적으로 위치시키는것이 최선이다
 
 
+// * 배열 생성
+// 리터럴
+const arrr = [1, 2, 3];
+// * Array 생성자 함수
+const arrr2 = new Array(10);
+console.log(arrr2);
+console.log(arrr2.length)
+console.log(Object.getOwnPropertyDescriptors(arrr2));
 
+// 배열은 2에 32승 -1(4,294,967,295)
+// new Array(4294967295) ok
+// new Array(4294967296) 에러
+// new Array(-1) 음수면 에러
+
+const a = new Array();
+console.log(a); // -> []
+
+// Array 생성자 함수는 new연산자와 함께 호출하지 않더라도 즉 일반함수로서 호출해도 배열을 생성하는 생성자 함수로 동작한다
+// 이는 Array 생성자 함수 내부에서 new.target 을 확인하기 때문이다
