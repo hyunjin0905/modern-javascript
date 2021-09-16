@@ -53,7 +53,8 @@ const arrr = [
 
 
 // 일반적인 배열과 자바스크립트 배열의 장단점 정리
-// 일반적인 배열은 인덱스로 요소에 빠르게 접근할수있다 하지만 특정요소를 검색하거나 요소를 삽입, 삭제 하는 경우에는 효율 적 이지 않다
+// 일반적인 배열은 인덱스로 요소에 빠르게 접근할수있다
+// 하지만 특정요소를 검색하거나 요소를 삽입, 삭제 하는 경우에는 효율 적 이지 않다
 // 자바스크립트 배열은 해시테이블로 구현된 객체이므로 인덱스로 요소에 접근하는 경우 일반적인 배열보다 성능적인 면에서 느릴수 밖에 없는 구조적인 단점이 있다
 // 하지만 특정 요소를 검색하거나 요소를 삽입 또는 삭제하는 경우에는 일반적인 배열보다 빠른 성능을 기대 할수 있다
 
@@ -75,3 +76,55 @@ for(let i = 0; i < 1000000; i++) {
 }
 
 console.timeEnd('Object Performance test')
+
+
+// * length 프로퍼티와 희소배열
+[].length //0
+[1,2,3].length //3
+
+// length 프로퍼티의 값 0과 2의32승 -1(4,294,967,295)개 가질수 있음
+const arr3 = [1 ,2 ,3];
+console.log(arr3.length);
+
+// 요소추가
+arr3.push(4);
+// 요소를 추가하면 length 프로퍼티의 값이 자동 갱신된다
+console.log(arr3.length);
+
+//요소 삭제
+arr3.pop();
+// 요소를 삭제하면 length 프로퍼티의 값이 자동 갱신된다
+console.log(arr3.length)
+
+const arr4 = [1, 2, 3, 4, 5];
+// length 프로퍼티에 3을 할당
+arr4.length = 3;
+console.log(arr4.length);
+
+const arr5 = [1];
+arr5.length = 3;
+console.log(arr5);
+
+console.log(Object.getOwnPropertyDescriptors(arr5));
+
+
+// 희소배열
+const spares = [, 2, , 4];
+
+// 희소배열 length 프로퍼티 값은 요소의 개수와 일치하지 않는다
+console.log(spares.length);
+console.log(spares);
+
+// 배열 sparse에는 인덱스가 0, 2인 요소가 존재 하지 않는다
+console.log(Object.getOwnPropertyDescriptors(spares));
+
+// 일반적인 배열의 length는 배열 요소의 개수 즉 배열의 길이와 언제나 일치한다
+// 하지만 희소배열은 length와 배열요소의 개수가 일치 하지 않는다
+// 희소배열의 length는 희소배열의 실제요소개수보다 언제나 크다
+
+// 안쓰는게 좋음
+
+// 배열에는 같은타입의 요소를 연속적으로 위치시키는것이 최선이다
+
+
+
