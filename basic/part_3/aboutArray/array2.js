@@ -143,5 +143,89 @@ console.log(Object.getOwnPropertyDescriptors(arrr2));
 const a = new Array();
 console.log(a); // -> []
 
-// Array 생성자 함수는 new연산자와 함께 호출하지 않더라도 즉 일반함수로서 호출해도 배열을 생성하는 생성자 함수로 동작한다
+// Array 생성자 함수는 new 연산자와 함께 호출하지 않더라도
+// 즉 일반함수로서 호출해도 배열을 생성하는 생성자 함수로 동작한다
 // 이는 Array 생성자 함수 내부에서 new.target 을 확인하기 때문이다
+Array(1, 2, 3);
+
+
+// Array.of es6에서 도입된 Array.of 메서드는 전달된 인수를 요소로 갖는 배열을 생성한다
+Array.of(1)
+Array.of(1, 2, 3)
+
+
+// Array.from
+// 유사배열객체 또는 이터러블 객체를 인스로 전달받아 배열로 변환하여 반환한다
+// 유사배열 객체
+console.log(Array.from({length: 2, 0: 'a', 1: 'b'}))
+
+// 이터러블을 변환하여 배열을 생성한다 문자열은 이터러블이다
+console.log(Array.from("hello"))
+
+
+// Array.from 두번째 인수로 전달한 콜백함수를 통해 값을 만들면서 요소를 채울수 있다
+
+Array.from({ length: 3 }, (a, i) => {
+    console.log(a , i);
+    return i
+});
+
+// 유사배열객체는 마치 배열처럼 인덱스로 프로퍼티값에 접근할수 있고 length 프로퍼티를 갖는 개체를 말한다
+const arrayLink = {
+    "0": "apple",
+    "1": "banna",
+    "2": "orange",
+    legnth: 3
+}
+
+for(var i = 0; i < arrayLink.legnth; i++){
+    console.log(arrayLink[i])
+}
+// 이터러블  객체는 Symbol.iterator 메서드를 구현하여 for ...of 문으로 순회 할수 있으며 스프레드 문법과 배열 디스트럭처링 할당 의 대상을 사용할수 있는 객체를 말한다
+
+// 배열요소의 참조
+const array11 = new Array(1,2,3);
+console.log(array11[0])
+// 인덱스는 값을 참조할수 있다는 의미에서 객체의 프로퍼티 키와 같은 역할을 한다
+// 희소배열일 경우는 undefiend반환
+
+// 배열요소의 추가와 갱신
+const arr = [0];
+arr[1] = 1;
+arr[100] = 100;
+console.log(arr);
+// 이때 인덱스 요소로 접근하여 명시적으로 값을 할당하지 않은 요소는 생성되지 않는 다는 것에 주의하기
+console.log(Object.getOwnPropertyDescriptors(arr));
+// 요소값의 갱신
+arr[1] = 0;
+
+// 인덱스는 요소의 위치를 나타내므로 반드시 0 이상의 정수 를 사용 해야한다
+// 만약 정수 이외의 값을 인텍스처럼 사용하면 요소가 생성되는 것이 아니라 프로퍼티가 생성된다 이때 추가된 프로퍼티는 length 프로퍼티 값에 영향을 주지 않는다
+const arr6 = [];
+
+arr6[0] = 1
+arr6['1'] = 2;
+
+// 프로퍼티 추가
+arr6['foo'] = 3;
+arr6.bar = 4;
+arr6[1.1] = 5;
+arr6[-1] = 6;
+
+console.log(arr6);
+console.log(arr6.length)
+
+
+// 배열 요소의 삭제
+const arr7 = [1, 2, 3];
+delete arr7[1];
+console.log(arr7.length);
+// legnth 프로퍼티에 영향을 주지않는다 즉 희소배열이 된다
+// delete 연산자는 사용하지 안흔ㄴ 것이 좋다
+// 희소배열을 만들지 않으면서 배열의 특정요소를 삭제 하려면
+// Array.prototype.slice 메서드 사용
+
+
+
+
+
