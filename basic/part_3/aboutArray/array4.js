@@ -232,8 +232,49 @@ console.log(user)
 
 // * Array.prototype.reduce()
 console.log("Array.prototype.reduce() ====================================")
-const sum = [1, 2, 3, 4].reduce((accumulator, currentValue, index, array) => accumlator + currentValue, 0)
+const sum = [1, 2, 3, 4].reduce((accumulator, currentValue, index, array) => accumulator + currentValue, 0)
 console.log(sum)
+
+// 평균구하기
+const values = [1, 2, 3, 4, 5, 6];
+const average = values.reduce((acc, cur, i, {length}) => {
+    return i === length - 1 ? (acc + cur) / length : acc + cur;
+}, 0)
+console.log(average);
+
+// 최대값 구하기
+const max = values.reduce((acc, cur) => (acc > cur ? acc : cur), 0);
+console.log(max);
+
+const max2 = Math.max(...values);
+console.log(max2);
+
+// 요소의 중복 횟수 구하기
+const reduceFruit = ["banna", "apple", "orange", "orange", "apple"];
+const overlapCount = reduceFruit.reduce((acc, cur) => {
+    // 첫번째 순회시 acc 초기값인 {}이고 cur 첫번째 요소인 바나나 이다
+    // 초기값으로 전달받은 빈 객체에 요소값인 cur 을 프로퍼티 키로 요소의 개수를 프로퍼티 값으로 할당한다
+    // 만약 프로퍼티값이 undefined 면 (처음등장)프로퍼티 값을 1로 초기화 한다
+    acc[cur] = (acc[cur] || 0) + 1;
+    return acc;
+}, {});
+console.log(overlapCount)
+
+// 중첩 배열 평탄화
+const values2 = [1, [2, 3], 4, [5, 6]];
+const flatten = values.reduce((acc, cur) => acc.concat(cur), []);
+console.log(flatten)
+// flat 쓰기 !
+
+// 중복 요소 제거
+const values3 = [1, 2, 1, 3, 5, 4, 5, 3, 4, 4];
+const reduceRemoveValue3 = values3.reduce((acc, cur, i, arr) => {
+    if (arr.indexOf(cur) === i) acc.push(cur)
+    return acc;
+},[]);
+
+console.log(reduceRemoveValue3)
+
 // * Array.prototype.some()
 // * Array.prototype.every()
 // * Array.prototype.find()
