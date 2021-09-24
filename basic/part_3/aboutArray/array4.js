@@ -275,6 +275,9 @@ const reduceRemoveValue3 = values3.reduce((acc, cur, i, arr) => {
 
 console.log(reduceRemoveValue3)
 
+const filterRemoveValue = values3.filter((v,i,arr) => arr.indexOf(v) === i)
+console.log(filterRemoveValue);
+
 // * Array.prototype.some()
 // * Array.prototype.every()
 // * Array.prototype.find()
