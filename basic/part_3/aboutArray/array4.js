@@ -55,6 +55,7 @@ console.log("kofruit reverse => ", kofruit);
 
 // 주의!
 const points = [40, 100, 1, 5, 2, 25, 10];
+
 points.sort();
 console.log(points);
 // sort 메서드는 기본정렬 순서는 유니코드 코드 포인트 의 순서를 따른다
