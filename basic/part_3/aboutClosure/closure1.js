@@ -23,7 +23,8 @@ function innerFunc() {
 }
 
 outerFunc()
-// innerFunc 함수가 outerFuc 내부에서 정의된 중첩함수가 아니라면 innerFunc함수를 outerFunc 함수의 내부에서 호출한다 하더라도 outerFunc 함수의 변수에 접근 할수 없다
+// innerFunc 함수가 outerFuc 내부에서 정의된 중첩함수가 아니라면 innerFunc함수를
+// outerFunc 함수의 내부에서 호출한다 하더라도 outerFunc 함수의 변수에 접근 할수 없다
 // 이 와 같은 현상은 자바스크립트가 렉시컬 스코프를 따르는 프로그래밍 언어
 
 // 렉시컬 스코프
