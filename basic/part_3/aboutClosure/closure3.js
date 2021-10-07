@@ -13,7 +13,6 @@ console.log(increase())
 //1. 카운트 상태 는 increase 함수가 호출되기 전까지 변경되지 않고 유지 되어야한다
 //2. 이를 위해 카운트 상태 (num변수값)는 increase 함수많이 변경할 수 있어야 한다
 
-//
 
 const increse2 = function () {
     let num = 0
