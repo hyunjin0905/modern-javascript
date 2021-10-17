@@ -189,7 +189,7 @@ console.log(namedFuc.name);
 function far() {
 
 }
-console.log(far.name)
+console.log(far.name)                                                                    
 // *** 함수이름과 함수 객체를 가리키는 식별자의 의미는 다르다
 
 
