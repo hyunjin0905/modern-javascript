@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text"/>
+<div class="msg"></div>
+<script>
+    const $input = document.querySelector("input");
+    const $msg = document.querySelector(".msg")
+    const debounce = (callback, delay) => {
+        let timerId;
+        // debounce 함수는 timerId 기억하는 클로저를 반환한다
+        return event => {
+            if (timerId) clearTimeout(timerId);
+            timerId = setTimeout(callback, delay, event);
+        }
+    }
+    $input.oninput = debounce(e => {
+        $msg.textContent = e.target.value
+    }, 4000)
+    // 짧은 시간 가격으로 이벤트가 연속해서 발생하면 이벤트 핸들러를 호출하지 않았다가
+    // 일정시간동안 이벤트가 더이상 발생하지 않으면 이벤트 핸들러가 한번만 호출되도록 한다
+</script>
+</body>
+</html>
