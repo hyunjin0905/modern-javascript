@@ -1,5 +1,5 @@
 // 비동기 처리를 위한 콜백 패턴의 단점
-// 콜백 헬
+
 const get = url => {
     const xhr = new XMLHttpRequest()
     xhr.open("GET", url);
