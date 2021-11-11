@@ -80,7 +80,6 @@
                 const item = itemWrapperElem.querySelector(".item"),
                     itemMargin = parseFloat(getComputedStyle(item).marginRight),
                     itemWidth = itemMargin + item.offsetWidth + 2;
-                console.log(itemWidth)
                 let itemCount = Math.floor(itemWrapperElem.scrollLeft / itemWidth)
 
                 if (direction === "left") {
