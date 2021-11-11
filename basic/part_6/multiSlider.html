@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        .slider {
+            display: flex;
+
+        }
+        .slider .slider-btn-wrapper {
+            margin: auto 0 ;
+        }
+        .item-wrapper {
+            width: 650px;
+            height: 300px;
+            border: 1px solid #cecece;
+            padding: 10px;
+            overflow: hidden;
+            display: flex;
+        }
+        .image {
+            width: 250px;
+            height: 250px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>멀티 슬라이드</h1>
+    <div class="slider">
+        <div class="slider-btn-wrapper slider-btn-wrapper-left">
+            <button id="left-btn" class="slider-btn">
+                &larr;
+            </button>
+        </div>
+        <div class="item-wrapper">
+            <div class="item">
+                <img src="./image/1.jpeg" alt="고양이 이미지" class="image"/>
+                <div class="title">
+                    고양이1
+                </div>
+            </div>
+            <div class="item">
+                <img src="./image/2.jpeg" alt="고양이 이미지" class="image"/>
+                <div class="title">
+                    고양이2
+                </div>
+            </div>
+            <div class="item">
+                <img src="./image/3.jpeg" alt="고양이 이미지" class="image"/>
+                <div class="title">
+                    고양이3
+                </div>
+            </div>
+            <div class="item">
+                <img src="./image/4.jpeg" alt="고양이 이미지" class="image"/>
+                <div class="title">
+                    고양이4
+                </div>
+            </div>
+    </div>
+    <div class="slider-btn-wrapper slider-btn-wrapper-right">
+        <button id="right-btn" class="slider-btn">
+            &rarr;
+        </button>
+    </div>
+    </div>
+    <script>
+        (function () {
+            const itemWrapperElem = document.querySelector(".item-wrapper"),
+                leftBtnElem = document.getElementById("left-btn"),
+                rightBtnElem = document.getElementById("right-btn")
+
+            function moveSlides(direction) {
+                const item = itemWrapperElem.querySelector(".item"),
+                    itemMargin = parseFloat(getComputedStyle(item).marginRight),
+                    itemWidth = itemMargin + item.offsetWidth + 2;
+                console.log(itemWidth)
+                let itemCount = Math.floor(itemWrapperElem.scrollLeft / itemWidth)
+
+                if (direction === "left") {
+                    itemCount = item - 1;
+                } else {
+                    itemCount = itemCount + 1;
+                }
+                itemWrapperElem.scrollLeft = itemWidth * itemCount;
+            }
+
+            leftBtnElem.addEventListener("click",() => moveSlides("left"))
+            rightBtnElem.addEventListener("click",() => moveSlides("right"))
+
+        })()
+
+    </script>
+</body>
+</html>
