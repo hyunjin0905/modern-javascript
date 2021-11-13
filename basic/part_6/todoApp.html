@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="title">
+        <h1> 나의 하루 </h1>
+        <h2> 10월 28일</h2>
+        <div class="todo-container">
+
+        </div>
+        <div class="add_todo">
+            <button>+</button>
+            <input type="text" placeholder="할일 추가">
+        </div>
+    </div>
+<script src="./todoApp.js"></script>
+<script src="./todo.js"></script>
+<script>
+    const todoApp = new TodoApp([
+        {contents: "리액트 공부하기", done: false},
+        {contents: "자바스크립트 공부하기", done: false},
+        {contents: "타입스크립트 공부하기", done: false},
+    ]);
+</script>
+</body>
+</html>
