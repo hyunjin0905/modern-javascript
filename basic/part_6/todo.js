@@ -36,3 +36,4 @@ class TodoManager {
         ,0)
     }
 }
+console.log(new TodoManager)

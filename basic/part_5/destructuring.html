@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+     var arr = [ 1, 2, 3];
+     var one = arr[0]
+     console.log(one);
+
+     // 배열 디스트럭처링 할당의 대상은 이터러블 이어야하며 할당 기준은 배열의 인덱스다
+     const [a, b]  = [1, 2];
+     console.log(a, b)
+     const [c, d, f = 3] = [1, 2];
+     console.log(c, d, f)
+     // 기본값 보다 할당된 값이 우선한다
+
+
+     const [x, ...y] = [1, 2, 3];
+     console.log(x, y)
+
+     // 객체 디스럭처링 할당
+
+     const user = { firstName: "hyun", lastName: "jin"}
+     const { lastName, firstName } = user
+     console.log(lastName)
+     const { last, first } = { last: "cho", first: "hyunjin" }
+     console.log(last, first)
+
+
+     // 객체의 프로퍼티 키와 다른 변수 이름으로 프로펕 값을 할당받으려면 다음과 같이 변수 선언
+     const { lastName: ln, firstName: fn } = user
+     console.log(ln, fn)
+
+     //기본값 설정
+     const { fruit1 = "apple",  fruit2}  = { fruit2: "banna" }
+     console.log(fruit1, fruit2)
+
+     const { fruit3: apple = "apple", fruit4: cherry } = { fruit4: "cherry"}
+     console.log(cherry , apple)
+     const str  = "hello"
+     const { length } = str
+     console.log(length)
+     const todo = { id: 1, content: "HTML", completed: true }
+     const { id } = todo;
+     console.log(id)
+
+
+
+</script>
+
+</body>
+</html>
