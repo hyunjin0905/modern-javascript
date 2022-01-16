@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>const log = console.log;</script>
+
+# 제너레이터/이터레이터
+- 제너레이터: 이터레이터이자 이터러블을 생성하는 함수
+
+<script>
+    function* gen() {
+        yield 1;
+        if (false) yield 2;
+        yield 3;
+    }
+
+    let iter = gen();
+    log(iter[Symbol.iterator]() == iter);
+    log(iter.next());
+    log(iter.next());
+    log(iter.next());
+    log(iter.next());
+
+    for (const a of gen()) log(a);
+    console.log("제너레이터 ------------------")
+</script>
+
+# odds
+<script>
+    function *odd(l) {
+        for (let i = 0; i < l; i++) {
+            if (i % 2) yield i;
+        }
+    }
+    let iter2 = odd(10);
+    log(iter2.next())
+    log(iter2.next())
+    log(iter2.next())
+    log(iter2.next())
+    log(iter2.next())
+    log(iter2.next())
+
+</script>
+
+
+<script>
+    function *infinity(i = 0) {
+        while (true) yield i++;
+    }
+
+    function *odd2(l) {
+        for (const a of infinity(10)) {
+            if (a % 2) yield a;
+            if (a === l) return;
+        }
+    }
+    let iter3 = odd2(10)
+    log(iter3.next())
+    log(iter3.next())
+    log(iter3.next())
+
+    function* limit(l, iter) {
+        for (const a of iter) {
+            yield a;
+            if (a == l) return;
+        }
+    }
+
+    function* odds(l) {
+        for (const a of limit(l, infinity(1))) {
+            if (a % 2) yield a;
+        }
+    }
+
+    let iter2 = odds(10);
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+
+    for (const a of odds(40)) log(a);
+
+    console.clear();
+</script>
+
+# for of, 전개 연산자, 구조 분해, 나머지 연산자
+
+<script>
+    log(...odds(10));
+    log([...odds(10), ...odds(20)]);
+
+    const [head, ...tail] = odds(5);
+    log(head);
+    log(tail);
+
+    const [a, b, ...rest] = odds(10);
+    log(a);
+    log(b);
+    log(rest);
+</script>
+</body>
+</html>
+
